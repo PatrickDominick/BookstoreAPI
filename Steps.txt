@@ -1,0 +1,41 @@
+1. Set up Environment
+pipenv install flask flask-sqlalchemy 
+flask-marshmallow marshmallow-sqlalchemy flask-cors gunicorn psycopg2 
+
+2. Add boilerplate code
+For development server
+from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow 
+from flask_cors import CORS 
+
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = ""
+
+db = SQLAlchemy(app)
+ma = Marshmallow(app)
+CORS(app)
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+Use gunicorn for heavyweight API
+
+Use heroku for hosting and follow directions on their page heroku ci 
+heroku create (url domain name)
+3. Create SQLAlchemy database tables
+    3.1 Set up Marshmallow Schemas
+    3.5 Actually create said database tables
+
+    To set up database (steps in sqlalchemy documentation)
+    pipenv shell
+    python
+    >>>from app import db
+    >>>db.create_all()
+
+4. Create Flask endpoints for each table
+
+Get it hosted live on heroku
+git push heroku master 
